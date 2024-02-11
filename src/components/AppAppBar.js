@@ -45,7 +45,11 @@ function AppAppBar({ mode, toggleColorMode }) {
   };
 
   const handleSignIn = () => {
-    navigate('/home')
+    navigate('/signin')
+  }
+
+  const handleSignUp = () => {
+    navigate('/signup')
   }
 
   return (
@@ -155,8 +159,7 @@ function AppAppBar({ mode, toggleColorMode }) {
                 variant="text"
                 size="small"
                 component="a"
-                onClick={handleSignIn}
-                
+                onClick={handleSignIn}                             
               >
                 Sign in
               </Button>
@@ -166,9 +169,9 @@ function AppAppBar({ mode, toggleColorMode }) {
                 variant="contained"
                 size="small"
                 component="a"
-                
+                onClick={handleSignUp}                
               >
-                Sign u
+                Sign up
               </Button>
             </Box>
             <Box sx={{ display: { sm: '', md: 'none' } }}>
@@ -219,8 +222,7 @@ function AppAppBar({ mode, toggleColorMode }) {
                       color="primary"
                       variant="contained"
                       component="a"
-                      href="/material-ui/getting-started/templates/sign-up/"
-                      target="_blank"
+                      onClick={handleSignUp}                      
                       sx={{ width: '100%' }}
                     >
                       Sign up
@@ -231,8 +233,7 @@ function AppAppBar({ mode, toggleColorMode }) {
                       color="primary"
                       variant="outlined"
                       component="a"
-                      href="/material-ui/getting-started/templates/sign-in/"
-                      target="_blank"
+                      onClick={handleSignIn}
                       sx={{ width: '100%' }}
                     >
                       Sign in

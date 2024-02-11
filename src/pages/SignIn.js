@@ -8,10 +8,10 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import logo from '../icons/logo.png';
 
 function Copyright(props) {
   return (
@@ -40,6 +40,13 @@ export default function SignIn() {
     });
   };
 
+  const logoStyle = {
+    width: '140px',
+    height: 'auto',
+    cursor: 'pointer',
+    marginBottom: '-30px'
+  };
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
@@ -52,9 +59,11 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
+          
+          <img src={require('../icons/logo.png')}
+                style={logoStyle}
+                alt="logo of bundle"
+              />
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
@@ -98,7 +107,7 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
