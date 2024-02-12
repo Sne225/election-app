@@ -18,13 +18,16 @@ import InputAdornment from '@mui/material/InputAdornment';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
+import Snackbar from '@mui/material/Snackbar';
+import FormHelperText from '@mui/material/FormHelperText';
+
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="#">
+        Bundle
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -39,6 +42,11 @@ const defaultTheme = createTheme();
 export default function SignIn() {
 
 const [showPassword, setShowPassword] = React.useState(false);
+const [errorMessages, setErrorMessages] = React.useState({});
+const [email, setEmail] = React.useState('');
+const [password, setPassword] = React.useState('');
+const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+
 
 const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -46,13 +54,47 @@ const handleMouseDownPassword = (event) => {
   event.preventDefault();
 };
 
+const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+const validateForm = () => {
+    const errors = {};
+
+    if (!email.trim()) {
+        errors.email = 'Email is required. Please enter email.';
+    } else if (!isValidEmail(email)) {
+        errors.email = 'Invalid Email. Please try again.';
+    }
+    
+
+    if (!password.trim()) {
+        errors.password = 'Password is required. Please enter your password.';
+    } else if (password.length < 5) {
+        errors.password = 'Password Too Short. Please try Again.';
+    }
+    
+    setErrorMessages(errors);
+    return Object.keys(errors).length === 0;
+};
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
+    if (validateForm()) {
+        console.log('Form submitted successfully');
+        setSnackbarOpen(true);
+        // Add your form submission logic here
+    } else {
+        console.log('Form submission failed');
+    }
+
+    // const data = new FormData(event.currentTarget);
+    // console.log({
+    //   email: data.get('email'),
+    //   password: data.get('password'),
+    // });
   };
 
   const logoStyle = {
@@ -74,15 +116,16 @@ const handleMouseDownPassword = (event) => {
             alignItems: 'center',
           }}
         >
-          
+          <Link href="/">
           <img src={require('../icons/logo.png')}
                 style={logoStyle}
                 alt="logo of bundle"
               />
+            </Link>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" noValidate onSubmit={handleSubmit}  sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -92,7 +135,11 @@ const handleMouseDownPassword = (event) => {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={(e) => setEmail(e.target.value)}
+                  error={!!errorMessages.email}
+                  helperText={errorMessages.email}
             />
+            
              <FormControl sx={{ minWidth: { xs: '100%', md: 400} }}>
              <InputLabel htmlFor="filled-adornment-password" required>Password</InputLabel>
             <OutlinedInput
@@ -112,7 +159,11 @@ const handleMouseDownPassword = (event) => {
               </InputAdornment>
             }
             label="Password"
+            onChange={(e) => setPassword(e.target.value)}
+                  error={!!errorMessages.password}
+                 
           />
+          <FormHelperText sx={{color: '#d32f2f'}}>{errorMessages.password}</FormHelperText>
           </FormControl>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}

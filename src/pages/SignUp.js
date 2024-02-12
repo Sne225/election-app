@@ -17,6 +17,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
+import Snackbar from '@mui/material/Snackbar';
 
 
 
@@ -45,7 +46,10 @@ export default function SignUp() {
   const [province, setProvince] = React.useState('');
   const [idNumber, setIdNumber] = React.useState('');
   const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [password, setPassword] = React.useState('');  
+  const [errorMessages, setErrorMessages] = React.useState({});
+  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+
 
   const provinces = [
     'Eastern Cape',
@@ -59,6 +63,47 @@ export default function SignUp() {
     'Western Cape',
   ];
 
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+
+  const validateForm = () => {
+    const errors = {};
+
+    // Perform validation checks here
+    if (!name.trim()) {
+        errors.name = 'First name is required';
+    }
+
+    if (!surname.trim()) {
+        errors.surname = 'Last name is required';
+    }
+
+    if (!idNumber.trim()) {
+        errors.idNumber = 'ID number is required';
+    }
+
+    if (!province) {
+        errors.province = 'Province is required';
+    }
+
+    if (!email.trim()) {
+        errors.email = 'Email is required. Please enter email.';
+    } else if (!isValidEmail(email)) {
+        errors.email = 'Invalid Email. Please try again.';
+    }
+
+    if (!password.trim()) {
+        errors.password = 'Password is required. Please enter your password.';
+    } else if (password.length < 5) {
+        errors.password = 'Password Too Short. Please try Again.';
+    }
+    setErrorMessages(errors);
+    return Object.keys(errors).length === 0;
+};
+
   const logoStyle = {
     width: '140px',
     height: 'auto',
@@ -68,14 +113,31 @@ export default function SignUp() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-      province: province,
 
-    });
+    if (validateForm()) {
+        console.log('Form submitted successfully');
+        setSnackbarOpen(true);
+        // Add your form submission logic here
+    } else {
+        console.log('Form submission failed');
+    }
+    
+    // const data = new FormData(event.currentTarget);
+    // console.log({
+    //   email: data.get('email'),
+    //   password: password,
+    //   province: province,
+    //     name: name,
+    //     surname: surname,
+    //     idNumber: idNumber
+
+
+    // });
   };
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+};
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -89,10 +151,12 @@ export default function SignUp() {
             alignItems: 'center',
           }}
         >
+            <Link href="/" sx={{ mt: -10 }}>
            <img src={require('../icons/logo.png')}
                 style={logoStyle}
                 alt="logo of bundle"
               />
+            </Link>
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
@@ -107,6 +171,9 @@ export default function SignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  onChange={(e) => setName(e.target.value)}
+                  error={!!errorMessages.name}
+                  helperText={errorMessages.name}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -117,6 +184,9 @@ export default function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  onChange={(e) => setSurname(e.target.value)}
+                  error={!!errorMessages.surname}
+                  helperText={errorMessages.surname}
                 />
               </Grid>
                <Grid item xs={12} sm={6}>
@@ -125,9 +195,10 @@ export default function SignUp() {
                   fullWidth
                   id="identity"
                   label="ID Number"
-                  autoFocus
                   value={idNumber}
-                //   onChange={handleInputChange}
+                  onChange={(e) => setIdNumber(e.target.value)}
+                  error={!!errorMessages.idNumber}
+                  helperText={errorMessages.idNumber}
                   inputProps={{ inputMode: 'numeric' }}
                 />
               </Grid>
@@ -139,11 +210,12 @@ export default function SignUp() {
                     fullWidth
                     value={province}
                     onChange={(e) => setProvince(e.target.value)}
+                    error={!!errorMessages.province}
+                    helperText={errorMessages.province}
                     label="Province"
-                    autoFocus
                     >
                     <MenuItem value="">
-                        <em>None</em>
+                        <strong>None</strong>
                     </MenuItem>
                     {provinces.map((prov) => (
                         <MenuItem key={prov} value={prov}>
@@ -151,6 +223,7 @@ export default function SignUp() {
                     </MenuItem>
       ))}   
                     </Select>
+                    <FormHelperText sx={{color: '#d32f2f'}}>{errorMessages.province}</FormHelperText>
             </FormControl>
               </Grid>
               <Grid item xs={12}>
@@ -161,6 +234,9 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                  error={!!errorMessages.email}
+                  helperText={errorMessages.email}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -172,6 +248,9 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={(e) => setPassword(e.target.value)}
+                  error={!!errorMessages.password}
+                  helperText={errorMessages.password}
                 />
               </Grid>
               <Grid item xs={12}>
