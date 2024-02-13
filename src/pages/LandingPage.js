@@ -86,8 +86,8 @@ export default function LandingPage() {
     <ThemeProvider theme={showCustomTheme ? LPtheme : defaultTheme}>
       <CssBaseline />
       <AppAppBar mode={mode} toggleColorMode={toggleColorMode} />
-      <Hero />
-      <Box sx={{ bgcolor: 'background.default' }}>
+        <Hero />
+        <Box sx={{ bgcolor: 'background.default' }}>
         <LogoCollection />
         <Features />
         <Divider />
@@ -95,16 +95,16 @@ export default function LandingPage() {
         <Divider />
         <Highlights />
         <Divider />
-        {/* <Pricing /> */}
+        <Pricing />
         <Divider />
         <FAQ />
         <Divider />
         <Footer />
       </Box>
-      <ToggleCustomTheme
+      {/* <ToggleCustomTheme
         showCustomTheme={showCustomTheme}
         toggleCustomTheme={toggleCustomTheme}
-      />
+      /> */}
     </ThemeProvider>
   );
 }
