@@ -32,7 +32,7 @@ function AppAppBar({ mode, toggleColorMode }) {
 
   const scrollToSection = (sectionId) => {
     const sectionElement = document.getElementById(sectionId);
-    const offset = 128;
+    const offset = 115;
     if (sectionElement) {
       const targetScroll = sectionElement.offsetTop - offset;
       sectionElement.scrollIntoView({ behavior: 'smooth' });
@@ -101,14 +101,14 @@ function AppAppBar({ mode, toggleColorMode }) {
                 alt="logo of bundle"
               />
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                {/* <MenuItem
+                <MenuItem
                   onClick={() => scrollToSection('features')}
                   sx={{ py: '6px', px: '12px' }}
                 >
                   <Typography variant="body2" color="text.primary">
                     Features
                   </Typography>
-                </MenuItem> */}
+                </MenuItem>
                  <MenuItem
                   onClick={() => scrollToSection('highlights')}
                   sx={{ py: '6px', px: '12px' }}
@@ -126,14 +126,14 @@ function AppAppBar({ mode, toggleColorMode }) {
                   </Typography>
                 </MenuItem>
                
-                <MenuItem
+                {/* <MenuItem
                   onClick={() => scrollToSection('pricing')}
                   sx={{ py: '6px', px: '12px' }}
                 >
                   <Typography variant="body2" color="text.primary">
                     Pricing
-                  </Typography>
-                </MenuItem>
+                  </Typography> 
+                </MenuItem>*/}
                 <MenuItem
                   onClick={() => scrollToSection('faq')}
                   sx={{ py: '6px', px: '12px' }}

@@ -20,6 +20,8 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Snackbar from '@mui/material/Snackbar';
 import FormHelperText from '@mui/material/FormHelperText';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import Alert from '@mui/material/Alert';
 
 
 function Copyright(props) {
@@ -45,7 +47,7 @@ const [showPassword, setShowPassword] = React.useState(false);
 const [errorMessages, setErrorMessages] = React.useState({});
 const [email, setEmail] = React.useState('');
 const [password, setPassword] = React.useState('');
-const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+const [snackbarOpenn, setSnackbarOpenn] = React.useState(false);
 
 
 const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -84,7 +86,6 @@ const validateForm = () => {
 
     if (validateForm()) {
         console.log('Form submitted successfully');
-        setSnackbarOpen(true);
         // Add your form submission logic here
     } else {
         console.log('Form submission failed');
@@ -186,6 +187,11 @@ const validateForm = () => {
           </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
+        <Snackbar open={snackbarOpenn} autoHideDuration={6000} onClose={() => setSnackbarOpenn(false)}>
+    <Alert onClose={() => setSnackbarOpenn(false)} severity="success" variant='filled' sx={{ width: '100%' }}>
+        You have successfully registered your account!
+    </Alert>
+</Snackbar>
       </Container>
     </ThemeProvider>
   );

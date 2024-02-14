@@ -12,46 +12,46 @@ import { useTheme } from '@mui/system';
 
 const userTestimonials = [
   {
-    avatar: <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />,
+    avatar: <Avatar alt="Remy Sharp" src="/avatar1.jpg" />,
     name: 'Remy Sharp',
-    occupation: 'Senior Engineer',
+    occupation: 'Administrator',
     testimonial:
-      "I absolutely love how versatile this product is! Whether I'm tackling work projects or indulging in my favorite hobbies, it seamlessly adapts to my changing needs. Its intuitive design has truly enhanced my daily routine, making tasks more efficient and enjoyable.",
+      "As an administrator, I'm truly appreciative of the seamless experience provided by the eBallot system. Its meticulous attention to detail and commitment to security have made managing our elections effortless and trustworthy.",
   },
   {
-    avatar: <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />,
+    avatar: <Avatar alt="Travis Howard" src="/avatar2.jpg" />,
     name: 'Travis Howard',
-    occupation: 'Lead Product Designer',
+    occupation: 'Election Coordinator',
     testimonial:
-      "One of the standout features of this product is the exceptional customer support. In my experience, the team behind this product has been quick to respond and incredibly helpful. It's reassuring to know that they stand firmly behind their product, providing the kind of support that enhances the overall user experience and instills confidence in the brand.",
+      "I'm grateful for the exceptional support provided by the eBallot system. Its user-friendly interface and efficient organization capabilities have garnered positive feedback from our participants, ensuring a successful electoral process.",
   },
   {
-    avatar: <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />,
+    avatar: <Avatar alt="Cindy Baker" src="/avatar3.jpg" />,
     name: 'Cindy Baker',
-    occupation: 'CTO',
+    occupation: 'Voter',
     testimonial:
-      'The level of simplicity and user-friendliness in this product has significantly simplified my life. I appreciate the creators for delivering a solution that not only meets but exceeds user expectations.',
+      'As a voter, Im thankful for the convenience and reliability offered by the eBallot system. Its intuitive design and robust security measures have instilled confidence in me, making my voting experience both seamless and meaningful.',
   },
   {
-    avatar: <Avatar alt="Remy Sharp" src="/static/images/avatar/4.jpg" />,
+    avatar: <Avatar alt="Remy Sharp" src="/avatar4.jpg" />,
     name: 'Julia Stewart',
-    occupation: 'Senior Engineer',
+    occupation: 'Technical Support',
     testimonial:
-      "I appreciate the attention to detail in the design of this product. The small touches make a big difference, and it's evident that the creators focused on delivering a premium experience.",
+      "As part of the technical support team, I'm grateful for the opportunity to assist users of the eBallot system. Its reliability and prompt resolution of issues have garnered positive feedback, reinforcing our commitment to delivering exceptional service.",
   },
   {
-    avatar: <Avatar alt="Travis Howard" src="/static/images/avatar/5.jpg" />,
+    avatar: <Avatar alt="Travis Howard" src="/avatar5.jpg" />,
     name: 'John Smith',
-    occupation: 'Product Designer',
+    occupation: 'Auditor',
     testimonial:
-      "I've tried other similar products, but this one stands out for its innovative features. It's clear that the makers put a lot of thought into creating a solution that truly addresses user needs.",
+      "As auditors, we commend the eBallot system for its accuracy and accountability. Its comprehensive auditing features and adherence to regulatory standards have facilitated our review process, ensuring the integrity and reliability of the election results.",
   },
   {
-    avatar: <Avatar alt="Cindy Baker" src="/static/images/avatar/6.jpg" />,
+    avatar: <Avatar alt="Cindy Baker" src="/avatar6.jpg" />,
     name: 'Daniel Wolf',
-    occupation: 'CDO',
+    occupation: 'Legal Advisor',
     testimonial:
-      "The quality of this product exceeded my expectations. It's durable, well-designed, and built to last. Definitely worth the investment!",
+      "I appreciate the eBallot system's compliance with electoral laws and regulations. Its proactive approach to addressing legal concerns and commitment to upholding democratic principles have earned praise from stakeholders, reinforcing trust in the electoral process.",
   },
 ];
 
@@ -107,7 +107,7 @@ export default function Testimonials() {
           Testimonials
         </Typography>
         <Typography variant="body1" color="text.secondary">
-          See what our customers love about our products. Discover how we excel in
+          See what our customers love about our platform. Discover how we excel in
           efficiency, durability, and satisfaction. Join us for quality, innovation,
           and reliable support.
         </Typography>

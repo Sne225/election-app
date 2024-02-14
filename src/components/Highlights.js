@@ -16,39 +16,27 @@ const items = [
   {
     icon: <SettingsSuggestRoundedIcon />,
     title: 'Adaptable performance',
-    description:
-      'Our product effortlessly adjusts to your needs, boosting efficiency and simplifying your tasks.',
-  },
+   },
   {
     icon: <ConstructionRoundedIcon />,
     title: 'Built to last',
-    description:
-      'Experience unmatched durability that goes above and beyond with lasting investment.',
-  },
+    },
   {
     icon: <ThumbUpAltRoundedIcon />,
     title: 'Great user experience',
-    description:
-      'Integrate our product into your routine with an intuitive and easy-to-use interface.',
-  },
+   },
   {
     icon: <AutoFixHighRoundedIcon />,
     title: 'Innovative functionality',
-    description:
-      'Stay ahead with features that set new standards, addressing your evolving needs better than the rest.',
-  },
+   },
   {
     icon: <SupportAgentRoundedIcon />,
     title: 'Reliable support',
-    description:
-      'Count on our responsive customer support, offering assistance that goes beyond the purchase.',
-  },
+   },
   {
     icon: <QueryStatsRoundedIcon />,
     title: 'Precision in every detail',
-    description:
-      'Enjoy a meticulously crafted product where small touches make a significant impact on your overall experience.',
-  },
+    },
 ];
 
 export default function Highlights() {
@@ -81,7 +69,7 @@ export default function Highlights() {
             Highlights
           </Typography>
           <Typography variant="body1" sx={{ color: 'grey.400' }}>
-            Explore why our product stands out: adaptability, durability,
+            Explore why our platform stands out: adaptability, durability,
             user-friendly design, and innovation. Enjoy reliable customer support and
             precision in every detail.
           </Typography>
@@ -93,7 +81,6 @@ export default function Highlights() {
                 direction="column"
                 color="inherit"
                 component={Card}
-                spacing={1}
                 useFlexGap
                 sx={{
                   p: 3,

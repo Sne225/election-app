@@ -7,17 +7,8 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import Lottie from 'react-lottie';
-import animationData from '../animations/animation1.json';
-import BasicCard from './BasicCard';
 
 export default function Hero() {
-
-    const lottieOptions = {
-        loop: true,
-        autoplay: true,
-        animationData: animationData, // Your imported Lottie animation JSON file
-      };
 
   return (
     <Box
@@ -102,28 +93,6 @@ export default function Hero() {
           </Typography>
          
         </Stack>
-        <Box
-          id="image"
-          sx={(theme) => ({
-            mt: { xs: 8, sm: 30 },
-            alignSelf: 'center',
-            height: { xs: 100, sm: 500 },
-            width: '70%',
-            backgroundSize: 'cover',
-            borderRadius: '10px',
-            outline: '1px solid',
-            outlineColor:
-              theme.palette.mode === 'light'
-                ? alpha('#BFCCD9', 0.5)
-                : alpha('#9CCCFC', 0.1),
-            boxShadow:
-              theme.palette.mode === 'light'
-                ? `0 0 12px 8px ${alpha('#9CCCFC', 0.2)}`
-                : `0 0 24px 12px ${alpha('#033363', 0.2)}`,
-          })}
-        >              
-            <Lottie options={lottieOptions} />
-        </Box>
       </Container>
     </Box>
   );
