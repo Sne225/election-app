@@ -190,7 +190,7 @@ export default function SignIn() {
               <FormHelperText sx={{ color: '#d32f2f' }}>{errorMessages.password}</FormHelperText>
             </FormControl>
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
+              control={<Checkbox defaultChecked  value="remember" color="primary"/>}
               label="Remember me"
             />
             {loading && (

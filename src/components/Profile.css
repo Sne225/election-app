@@ -1,0 +1,9 @@
+.avatar-container {
+ 
+    align-items: center;
+  }
+  
+  .avatar {
+    display: inline-block;
+    margin-right: 10px;
+  }

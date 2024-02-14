@@ -28,6 +28,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import Lottie from 'react-lottie';
 import animationData from '../animations/anim.json';
 import CustomCard from '../components/CustomCard';
+import SideNav from '../components/SideNav';
 
 const theme = createTheme({
   palette: {
@@ -63,8 +64,8 @@ export default function Home() {
   };
 
   return (
-    <div style={{ py: 6, backgroundColor: '#f4f6f6'}}>
-      <AppBar position="static" sx={{ backgroundColor: "#2196F3", color: "white" }}>
+    <div style={{ py: 6, backgroundColor: '#f4f4f4'}}>
+      {/* <AppBar position="static" sx={{ backgroundColor: "#2196F3", color: "white" }}>
           <Toolbar>
             <Typography variant="h7" component="div" sx={{ flexGrow: 1 }}>
               <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>Bundle Ballot System</Link>
@@ -93,9 +94,10 @@ export default function Home() {
               </Tooltip>
             </Box>
           </Toolbar>
-        </AppBar>
+        </AppBar> */}
+
         
-        
+        <SideNav />
         <Container sx={{ py: 6}}>
               <Grid container spacing={4} sx={{fontFamily: 'Roboto'}}>
             <Grid item xs={12} align={'center'}>

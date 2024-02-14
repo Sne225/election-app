@@ -6,6 +6,7 @@ import SignUp from './pages/SignUp'
 import SignIn from './pages/SignIn';
 import './index.css';
 import Home from './pages/Home';
+import PrivateRoute from './Utils/PrivateRoute';
 // import { onAuthStateChanged } from 'firebase/auth';
 // import { auth } from './firebase';
 
@@ -13,8 +14,7 @@ const routes = [
   { path: '/', element: <LandingPage /> },
   { path: 'signup', element: <SignUp /> },
   { path: 'signin', element: <SignIn /> },
-  { path: 'home', element: <Home />},
-  // { path: 'home', element: <PrivateRoute element={<Home />} /> },
+  { path: 'home', element: <PrivateRoute element={<Home />} /> },
   // { path: 'list', element: <PrivateRoute element={<List />} /> },
 ];
 
