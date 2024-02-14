@@ -55,6 +55,7 @@ export default function SignUp() {
   const [errorMessages, setErrorMessages] = React.useState({});
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
   const [snackbarOpenn, setSnackbarOpenn] = React.useState(false);
+  const [voted] = React.useState(false); // State for voting status
   const [loading, setLoading] = React.useState(false); // State for loading animation
 
   const navigate = useNavigate();
@@ -144,6 +145,7 @@ export default function SignUp() {
         province,
         idNumber,
         email,
+        voted,
       });
 
       console.log('User added to Firestore with ID: ', userRef.id);
