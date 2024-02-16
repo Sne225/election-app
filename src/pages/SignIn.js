@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -24,6 +23,11 @@ import Alert from '@mui/material/Alert';
 import LinearProgress from '@mui/material/LinearProgress';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../Utils/firebase';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogActions from '@mui/material/DialogActions';
 
 
 
@@ -54,6 +58,9 @@ export default function SignIn() {
   const [snackbarOpenn, setSnackbarOpenn] = React.useState(false);
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false); // State for loading animation
+  const [error, setError] = React.useState(null);
+
+  
 
   const navigate = useNavigate();
 
@@ -115,7 +122,7 @@ export default function SignIn() {
 
     } catch (error) {
       setLoading(false)
-      console.error('Error creating account:', error.message);
+      console.error('Error signing into account:', error.message);
 
     } finally {
       setLoading(false);
@@ -128,6 +135,42 @@ export default function SignIn() {
     cursor: 'pointer',
     marginBottom: '-30px'
   };
+
+  const handleCloseError = () => {
+    setError(null);
+  };
+
+  let errorMessage = '';
+
+  if (error) {
+    switch (error.code) {
+      case 'auth/invalid-email':
+        errorMessage = 'Your email is invalid. Please try again.';
+        break;
+      case 'auth/wrong-password':
+        errorMessage = 'Incorrect Password. Please try again.';
+        break;
+        case 'auth/invalid-credential':
+        errorMessage = 'Invalid credentials. Please try again.';
+        break;
+      case 'auth/operation-not-allowed':
+        errorMessage = 'Email/password sign-in is not enabled';
+        break;
+        case 'auth/operation-not-allowed':
+        errorMessage = 'Email/password sign-in is not enabled';
+        break;
+      case 'auth/user-not-found':
+        errorMessage = 'This user does not exist. Please try again. 💀';
+        break;
+      case 'auth/too-many-requests':
+        errorMessage = 'Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. 😔';
+        break;
+      default:
+        errorMessage = 'Login failed';
+    }
+  }
+
+
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -228,6 +271,15 @@ export default function SignIn() {
             You have logged in successfully!
           </Alert>
         </Snackbar>
+        <Dialog open={!!error} onClose={handleCloseError}>
+        <DialogTitle>Error</DialogTitle>
+        <DialogContent>
+          <DialogContentText>{errorMessage}</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseError}>Close</Button>
+        </DialogActions>
+      </Dialog>
       </Container>
     </ThemeProvider>
   );

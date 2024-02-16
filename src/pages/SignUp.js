@@ -18,7 +18,7 @@ import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Snackbar from '@mui/material/Snackbar';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth, firestore } from '../Utils/firebase';
+import { auth, firestore } from '../Utils/firebase'
 import { doc, setDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import Alert from '@mui/material/Alert';

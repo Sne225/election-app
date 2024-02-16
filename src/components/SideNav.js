@@ -28,10 +28,10 @@ import LogoutIcon from '@mui/icons-material/Logout';
 
 
 
-
 const navItems = [
-    { label: 'Candidates', icon: <FaHome color='white' />, path: '/home' },
-    { label: 'Vote', icon: <FaUsers color='white' />, path: '/list' },
+    { label: 'Home', icon: <FaHome color='white' />, path: '/home' },
+    { label: 'Candidates', icon: <FaUsers color='white' />, path: '/candidates' },
+    { label: 'Vote', icon: <FaCodeBranch color='white' />, path: '#' },
     { label: 'Notifications', icon: <FaBell color='white' />, path: '#' },
     { label: 'Results', icon: <FaChartBar color='white' />, path: '#' },
 ];
@@ -121,18 +121,9 @@ const SideNav = () => {
                         {isOpen ? <FaTimes /> : <FaBars />}
                     </IconButton>
                     <Typography variant="h7" component="div" sx={{ flexGrow: 1 }}>
-                        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>Bundle Ballot System</Link>
+                        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>Bundle Ballot</Link>
                     </Typography>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-                            <Typography sx={{ minWidth: 100, cursor: 'pointer' }}>Home</Typography>
-                        </Link>
-                        <Link to="/elections" style={{ textDecoration: 'none', color: 'inherit' }}>
-                            <Typography sx={{ minWidth: 100, cursor: 'pointer' }}>Elections</Typography>
-                        </Link>
-                        <Link to="/candidates" style={{ textDecoration: 'none', color: 'inherit' }}>
-                            <Typography sx={{ minWidth: 100, cursor: 'pointer' }}>Candidates</Typography>
-                        </Link>
                         <Tooltip title="Account settings">
                             <IconButton
                                 onClick={handleClick}
@@ -208,7 +199,6 @@ const SideNav = () => {
 
             {/* Add content container to prevent content from being hidden behind the app bar */}
             <div className="content-container">
-                <Typography variant="h4">.</Typography>
                 {/* Your main content goes here */}
             </div>
             <Menu
@@ -247,7 +237,7 @@ const SideNav = () => {
           anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
           <MenuItem>
-          <Profile /> My account
+          <Avatar fontSize="small" />My account
           </MenuItem>
           <Divider />
           <MenuItem>

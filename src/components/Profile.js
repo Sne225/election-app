@@ -1,4 +1,3 @@
-// src/components/Profile.js
 import React, { useState, useEffect } from 'react';
 import Gravatar from 'react-gravatar';
 import { auth, firestore } from '../Utils/firebase';
@@ -8,12 +7,11 @@ import './Profile.css';
 
 const Profile = () => {
     const [email, setEmail] = useState(null);
-    // const [loading, setLoading] = useState(true);
+    const [name, setName] = useState(null);
 
     useEffect(() => {
         const getUserData = async () => {
             try {
-                //setLoading(true);
                 const user = auth.currentUser;
 
                 if (user) {
@@ -21,7 +19,7 @@ const Profile = () => {
                     const userDocSnapshot = await getDoc(userDocRef);
 
                     if (userDocSnapshot.exists()) {
-                        const userData = userDocSnapshot.data();
+                        const userData = userDocSnapshot.data()
                         setEmail(userData.email);
                     } else {
                         console.error('User document does not exist in Firestore.');
@@ -31,9 +29,6 @@ const Profile = () => {
                 }
             } catch (error) {
                 console.error('Error getting user data:', error);
-            } finally {
-                // Set loading to false regardless of success or error
-              //  setLoading(false);
             }
         };
 
@@ -42,10 +37,9 @@ const Profile = () => {
 
     return (
         <div className="profile">
-                <div>
-                    <Gravatar style={{ borderRadius: '20px' }} email={email} size={40} className="avatar" />
-                  
-                </div>
+            <div>
+                <Gravatar style={{ borderRadius: '20px', marginRight: '10px' }} email={email} size={40} className="avatar" />
+            </div>
         </div>
     );
 };

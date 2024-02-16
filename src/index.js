@@ -7,6 +7,7 @@ import SignIn from './pages/SignIn';
 import './index.css';
 import Home from './pages/Home';
 import PrivateRoute from './Utils/PrivateRoute';
+import Candidates from './pages/Candidate';
 // import { onAuthStateChanged } from 'firebase/auth';
 // import { auth } from './firebase';
 
@@ -15,7 +16,8 @@ const routes = [
   { path: 'signup', element: <SignUp /> },
   { path: 'signin', element: <SignIn /> },
   { path: 'home', element: <PrivateRoute element={<Home />} /> },
-  // { path: 'list', element: <PrivateRoute element={<List />} /> },
+  { path: 'candidates', element: <PrivateRoute element={<Candidates />} /> },
+
 ];
 
 const router = createBrowserRouter(routes);
