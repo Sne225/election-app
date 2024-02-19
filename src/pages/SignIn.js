@@ -110,7 +110,7 @@ export default function SignIn() {
             console.log('Logged in with:', user.email);
           })
 
-        await new Promise(resolve => setTimeout(resolve, 3000), setSnackbarOpenn(true));
+        await new Promise(resolve => setTimeout(resolve, 2000), setSnackbarOpenn(true));
         navigate('/home');
 
       } else {

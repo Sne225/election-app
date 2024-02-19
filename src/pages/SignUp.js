@@ -96,6 +96,10 @@ export default function SignUp() {
       return emailRegex.test(email);
     };
     
+    const isValidIdNumber = (idNumber) => {
+    const numbersRegex = /^[0-9]*$/;
+    return numbersRegex.test(idNumber);
+    };
 
     try {
     const validateForm = async () => {
@@ -112,6 +116,10 @@ export default function SignUp() {
   
       if (!idNumber.trim()) {
         errors.idNumber = 'ID number is required';
+      } else if (idNumber.length !== 13) { // South African ID numbers are 13 digits long
+        errors.idNumber = 'Invalid ID number. Please try again.';
+      } else if (isValidIdNumber(idNumber)) {
+        setErrorMessages({ idNumber: 'Please enter numbers only' });
       }
   
       if (!province) {
@@ -158,7 +166,7 @@ export default function SignUp() {
 
       console.log('User added to Firestore with ID: ', userRef.id);
 
-      await new Promise(resolve => setTimeout(resolve, 3000), setSnackbarOpenn(true));
+      await new Promise(resolve => setTimeout(resolve, 2000), setSnackbarOpenn(true));
 
       navigate('/home');
 
@@ -299,7 +307,14 @@ export default function SignUp() {
                 />
               </Grid>
             </Grid>
-            {loading && <LinearProgress />}
+            {loading && (
+            <Box sx={{ width: '100%', mt: 2 }}>
+                <Typography variant="body2" color="text.secondary" align="center">
+                  Loading...
+                </Typography>
+                <LinearProgress />
+              </Box>
+            )}
             <Button
               onClick={handleSubmit}
               fullWidth

@@ -125,7 +125,7 @@ const Candidate = () => {
             <Typography variant="h4" align="center">
               Vote For Your Candidate
             </Typography>
-            <Typography variant="body2" align="center" sx={{ marginBottom: 5 }}>
+            <Typography variant="body2" align="center" marginTop='10px' marginBottom='25px' >
               Vote for your preferred candidate by clicking the "Vote" button below their profile.
               You can view their manifesto by clicking the "Show More" button on their profile.
             </Typography>

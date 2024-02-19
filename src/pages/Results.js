@@ -172,11 +172,11 @@ const Results = () => {
                     <Grid container>
                         <SideNav />
                         <Grid item xs={12}>
-                            <Typography variant="h4" align="center"  marginBottom='5px' marginTop='4%'>
-                                Vote For Your Candidate
+                            <Typography variant="h4" align="center" marginBottom='5px' marginTop='50px'>
+                                Candidate Results
                             </Typography>
                             <Typography variant="body2" align="center" marginBottom='20px' >
-                                Below are the results of the current national ballot for running for present!
+                                Below are the results of the current national ballot for running for president!
                             </Typography>
                         </Grid>
                         <Grid item xs={11.5} md={6}>

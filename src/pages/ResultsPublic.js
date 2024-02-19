@@ -4,6 +4,8 @@ import { firestore } from '../Utils/firebase';
 import { Grid, Typography, Select, MenuItem, FormControl, InputLabel, Card, CardMedia, CardContent, IconButton, AppBar, Toolbar, Box, CircularProgress } from '@mui/material';
 import Chart from 'chart.js/auto';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'; // Import ArrowBack icon
+import { Link } from 'react-router-dom';
 
 
 const ResultsPublic = () => {
@@ -153,9 +155,8 @@ const ResultsPublic = () => {
   };
 
   return (
-
     <Grid>
-      {loading ? ( // Render loader if loading is true
+      {loading ? (
         <Box sx={{
           display: 'flex',
           flexDirection: 'column',
@@ -171,25 +172,29 @@ const ResultsPublic = () => {
         </Box>
       ) : (
         <>
+          <AppBar position="static">
+            <Toolbar>
+              <IconButton edge="start" color="inherit" aria-label="back">
+                <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <ArrowBackIcon />
+                </Link>
+
+              </IconButton>
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1, }}>
+                Bundle Ballot
+              </Typography>
+              {/* Add additional items/buttons/icons as needed */}
+            </Toolbar>
+          </AppBar>
           <Grid container>
-            <AppBar position="static">
-              <Toolbar>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                  Bundle Ballot
-                </Typography>
-                {/* Add additional items/buttons/icons as needed */}
-              </Toolbar>
-            </AppBar>
             <Grid item xs={12}>
-              <Typography variant="h4" align="center" marginBottom='5px' marginTop='1%'>
-                Candidate Results
+              <Typography variant="h4" align="center" marginBottom='5px'marginTop='50px'>
+                Public Candidate Results
               </Typography>
               <Typography variant="body2" align="center" marginBottom='20px' >
-                Below are the results of the current national ballot for running for present!
+                Below are the results of the current national ballot for running for president!
               </Typography>
             </Grid>
-
-            {/* Render content once loading is false */}
             <Grid item xs={11.5} md={6}>
               <FormControl fullWidth>
                 <InputLabel id="party-select-label" sx={{ marginLeft: '25px' }}>Select Party</InputLabel>
