@@ -66,8 +66,8 @@ export default function Hero() {
             useFlexGap
             sx={{ pt: 2, width: { xs: '100%', sm: 'auto' } }}
           >
-            <Link href="/result">
-            <Button variant="contained" color="primary"  align='center'
+            <Link href="/result" align='center'>
+            <Button variant="contained" color="primary"  
             > View Current Results
             </Button>
             </Link>
