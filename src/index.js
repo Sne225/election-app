@@ -9,14 +9,16 @@ import Home from './pages/Home';
 import PrivateRoute from './Utils/PrivateRoute';
 import Candidates from './pages/Candidate';
 import Results from './pages/Results';
+import ResultsPublic from './pages/ResultsPublic';
 // import { onAuthStateChanged } from 'firebase/auth';
 // import { auth } from './firebase';
 
 const routes = [
   { path: '/', element: <LandingPage /> },
   { path: 'signup', element: <SignUp /> },
-  { path: 'signin', element: <SignIn /> },
-  { path: 'results', element: <Results /> },
+  { path: 'signin', element: <SignIn /> },  
+  { path: 'results-public', element: <ResultsPublic /> },
+  { path: 'results', element: <PrivateRoute element={<Results />} />  },
   { path: 'home', element: <PrivateRoute element={<Home />} /> },
   { path: 'candidates', element: <PrivateRoute element={<Candidates />} /> },
 

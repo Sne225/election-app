@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { firestore } from '../Utils/firebase';
-import { Grid, Typography, Select, MenuItem, FormControl, InputLabel, Card, CardMedia, CardContent, IconButton, Box } from '@mui/material';
+import { Grid, Typography, Select, MenuItem, FormControl, InputLabel, Card, CardMedia, CardContent, IconButton, Box, CircularProgress } from '@mui/material';
 import SideNav from '../components/SideNav';
 import Chart from 'chart.js/auto';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -12,6 +12,7 @@ const Results = () => {
     const [chart, setChart] = useState(null);
     const [selectedCandidates, setSelectedCandidates] = useState([]);
     const [expanded, setExpanded] = useState(false);
+    const [loading, setLoading] = useState(true); // State to track loading status
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -31,6 +32,7 @@ const Results = () => {
                 }
 
                 setCandidatesData(candidates);
+                setLoading(false); // Set loading to false after data is fetched
             } catch (error) {
                 console.error('Error fetching candidates data:', error);
             }
@@ -150,64 +152,87 @@ const Results = () => {
     };
 
     return (
-        <Grid container spacing={2}>
-            <SideNav />
-            <Grid item xs={12}>
-                <Typography variant="h4" align="center" sx={{marginTop: '50px'}}>
-                    Results
-                </Typography>
-            </Grid>
-            <Grid item xs={11.5} md={6}>
-                <FormControl fullWidth>
-                    <InputLabel id="party-select-label"  sx={{marginLeft: '25px'}}>Select Party</InputLabel>
-                    <Select
-                        labelId="party-select-label"
-                        id="party-select"
-                        value={selectedParty}
-                        onChange={handlePartyChange}
-                        label="Select Party" // Add this line to explicitly provide the label
-                        sx={{marginLeft: '25px'}}
-                       
-                    >
-                        <MenuItem value="all">All</MenuItem>
-                        {Array.from(new Set(candidatesData.map(candidate => candidate.party))).map(party => (
-                            <MenuItem key={party} value={party}>
-                                {party}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-                <Grid item xs={12} style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-                {selectedCandidates.map(candidate => (
-                    <Card key={candidate.id} sx={{ maxWidth: 345, margin: '0 auto', marginBottom: '20px' }}>
-                        <CardMedia
-                            component="img"
-                            height="194"
-                            image={candidate.image}
-                            alt={`${candidate.name} ${candidate.surname}`}
-                        />
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
-                                {`${candidate.name} ${candidate.surname}`}
+        <Grid>
+            {loading ? ( // Render loader if loading is true
+                <Box sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: '50vh',
+                    marginTop: 20
+                }}>
+                    <CircularProgress />
+                    <Typography variant="body1" sx={{ marginTop: 1 }}>
+                        Loading...
+                    </Typography>
+                </Box>
+            ) : (
+                <>
+                    <Grid container>
+                        <SideNav />
+                        <Grid item xs={12}>
+                            <Typography variant="h4" align="center"  marginBottom='5px' marginTop='4%'>
+                                Vote For Your Candidate
                             </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                {expanded ? candidate.manifesto : `${candidate.manifesto.substring(0, 100)}...`}
+                            <Typography variant="body2" align="center" marginBottom='20px' >
+                                Below are the results of the current national ballot for running for present!
                             </Typography>
-                            <IconButton
-                                aria-label="show more"
-                                onClick={handleExpandClick}
-                                sx={{ transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)', marginLeft: 'auto' }}
-                            >
-                                <ExpandMoreIcon />
-                            </IconButton>
-                        </CardContent>
-                    </Card>
-                ))}
-            </Grid>
-            </Grid>
-            <Grid item xs={11} md={6}>
-                <canvas id="votesChart" width="400" height="200"></canvas>
-            </Grid>
+                        </Grid>
+                        <Grid item xs={11.5} md={6}>
+                            <FormControl fullWidth>
+                                <InputLabel id="party-select-label" sx={{ marginLeft: '25px' }}>Select Party</InputLabel>
+                                <Select
+                                    labelId="party-select-label"
+                                    id="party-select"
+                                    value={selectedParty}
+                                    onChange={handlePartyChange}
+                                    label="Select Party" // Add this line to explicitly provide the label
+                                    sx={{ marginLeft: '25px' }}
+
+                                >
+                                    <MenuItem value="all">All</MenuItem>
+                                    {Array.from(new Set(candidatesData.map(candidate => candidate.party))).map(party => (
+                                        <MenuItem key={party} value={party}>
+                                            {party}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+                            <Grid item xs={12} style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+                                {selectedCandidates.map(candidate => (
+                                    <Card key={candidate.id} sx={{ maxWidth: 350, margin: '0 auto', marginBottom: '20px', }}>
+                                        <CardMedia
+                                            component="img"
+                                            height="194"
+                                            image={candidate.image}
+                                            alt={`${candidate.name} ${candidate.surname}`}
+                                        />
+                                        <CardContent>
+                                            <Typography gutterBottom variant="h5" component="div">
+                                                {`${candidate.name} ${candidate.surname}`}
+                                            </Typography>
+                                            <Typography variant="body2" color="text.secondary">
+                                                {expanded ? candidate.manifesto : `${candidate.manifesto.substring(0, 100)}...`}
+                                            </Typography>
+                                            <IconButton
+                                                aria-label="show more"
+                                                onClick={handleExpandClick}
+                                                sx={{ transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)', marginLeft: 'auto' }}
+                                            >
+                                                <ExpandMoreIcon />
+                                            </IconButton>
+                                        </CardContent>
+                                    </Card>
+                                ))}
+                            </Grid>
+                        </Grid>
+                        <Grid item xs={11} md={6}>
+                            <canvas id="votesChart" width="700" height="500"></canvas>
+                        </Grid>
+                    </Grid>
+                </>
+            )}
         </Grid>
     );
 };

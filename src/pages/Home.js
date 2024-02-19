@@ -46,7 +46,7 @@ export default function Home() {
     <div style={{ py: 6, backgroundColor: '#f9f9f9' }}>
       <SideNav />
       <Container sx={{ py: 6 }}>
-        <Grid container spacing={4} sx={{ fontFamily: 'Roboto' }}>
+        <Grid container spacing={4} >
           <Grid item xs={12} align={'center'}>
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: -14, marginBottom: -5 }}>
               <Lottie
@@ -56,10 +56,10 @@ export default function Home() {
                 width={250}
               />
             </Box>
-            <Typography variant="h4" gutterBottom>
-              <strong>Welcome to Bundle Ballot System</strong>
+            <Typography variant="h4">
+              Welcome to Bundle Ballot System
             </Typography>
-            <Typography variant="body1" sx={{ marginBottom: 2 }}>
+            <Typography variant="body2" sx={{ marginBottom: 2 }}>
               Bundle is your go-to platform for managing elections seamlessly. Whether it's for your school, organization, or community, Bundle has got you covered.
             </Typography>
           </Grid>

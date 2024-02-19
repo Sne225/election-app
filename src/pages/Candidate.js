@@ -3,8 +3,8 @@ import CandidateCard from '../components/CandidateCard';
 import { firestore } from '../Utils/firebase';
 import { getAuth } from 'firebase/auth';
 import SideNav from '../components/SideNav';
-import { collection, getDocs, query, orderBy, doc, updateDoc, increment, getDoc, addDoc } from 'firebase/firestore';
-import { Grid, Typography, Dialog, DialogTitle, DialogContent, DialogActions, Button, Snackbar, Alert } from '@mui/material';
+import { collection, getDocs, query, orderBy, doc, updateDoc, getDoc, addDoc } from 'firebase/firestore';
+import { Grid, Typography, Dialog, DialogTitle, DialogContent, DialogActions, Button, Snackbar, Alert, Box, CircularProgress } from '@mui/material';
 
 
 const Candidate = () => {
@@ -14,6 +14,7 @@ const Candidate = () => {
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [currentUser, setCurrentUser] = useState(null);
+  const [loading, setLoading] = useState(true); // State to track loading status
 
   const getCandidatesData = async () => {
     try {
@@ -82,6 +83,7 @@ const Candidate = () => {
       // Refresh candidate data after voting
       getCandidatesData();
 
+
       // Show success message
       setSnackbarMessage('Thank you for voting!');
       setOpenSnackbar(true);
@@ -92,50 +94,73 @@ const Candidate = () => {
 
 
   useEffect(() => {
-    getCandidatesData();
+    const fetchData = async () => {
+      await getCandidatesData();
+      setLoading(false); // Set loading to false after data is fetched
+    };
+
+    fetchData();
   }, []);
 
   return (
     <Grid alignItems="center" justifyContent="center" sx={{ py: 6, backgroundColor: '#f9f9f9' }}>
-      <SideNav />
-      <Grid item xs={12} sm={8} md={6} lg={4}>
-        <Typography variant="h4" align="center" marginBottom='3%'>
-          <strong>Vote For Your Candidate</strong>
-        </Typography>
-        <Typography variant="body1" align="center" sx={{ marginBottom: 2 }}>
-          Vote for your preferred candidate by clicking the "Vote" button below their profile.
-          You can view their manifesto by clicking the "Show More" button on their profile.
-        </Typography>
-        <Grid container justifyContent="center" rowSpacing={5} columnSpacing={{ xs: 1, sm: 2, md: 5 }}>
-          {candidates.map((candidate) => (
-            <Grid item key={candidate.id}>
-              <CandidateCard candidate={candidate} onVote={() => {
-                setSelectedCandidate(candidate.id);
-                setOpenDialog(true);
-              }} />
+      {loading ? ( // Render loader if loading is true
+        <Box sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '50vh',
+          marginTop: 20
+        }}>
+          <CircularProgress />
+          <Typography variant="body1" sx={{ marginTop: 1 }}>
+            Loading...
+          </Typography>
+        </Box>
+      ) : (
+        <>
+          <SideNav />
+          <Grid item xs={12} sm={8} md={6} lg={4}>
+            <Typography variant="h4" align="center">
+              Vote For Your Candidate
+            </Typography>
+            <Typography variant="body2" align="center" sx={{ marginBottom: 5 }}>
+              Vote for your preferred candidate by clicking the "Vote" button below their profile.
+              You can view their manifesto by clicking the "Show More" button on their profile.
+            </Typography>
+            <Grid container justifyContent="center" rowSpacing={5} columnSpacing={{ xs: 1, sm: 2, md: 5 }}>
+              {candidates.map((candidate) => (
+                <Grid item key={candidate.id}>
+                  <CandidateCard candidate={candidate} onVote={() => {
+                    setSelectedCandidate(candidate.id);
+                    setOpenDialog(true);
+                  }} />
+                </Grid>
+              ))}
             </Grid>
-          ))}
-        </Grid>
-        <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
-          <DialogTitle>Confirm Vote</DialogTitle>
-          <DialogContent>
-            Are you sure you want to vote for this candidate?
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleVote}>Yes</Button>
-            <Button onClick={() => setOpenDialog(false)}>Cancel</Button>
-          </DialogActions>
-        </Dialog>
-        <Snackbar
-          open={openSnackbar}
-          autoHideDuration={2500}
-          onClose={() => setOpenSnackbar(false)}
-        >
-          <Alert onClose={() => setOpenSnackbar(false)} severity="success" variant='filled' sx={{ width: '100%' }}>
-            {snackbarMessage}
-          </Alert>
-        </Snackbar>
-      </Grid>
+            <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
+              <DialogTitle>Confirm Vote</DialogTitle>
+              <DialogContent>
+                Are you sure you want to vote for this candidate?
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleVote}>Yes</Button>
+                <Button onClick={() => setOpenDialog(false)}>Cancel</Button>
+              </DialogActions>
+            </Dialog>
+            <Snackbar
+              open={openSnackbar}
+              autoHideDuration={2500}
+              onClose={() => setOpenSnackbar(false)}
+            >
+              <Alert onClose={() => setOpenSnackbar(false)} severity="success" variant='filled' sx={{ width: '100%' }}>
+                {snackbarMessage}
+              </Alert>
+            </Snackbar>
+          </Grid>
+        </>
+      )}
     </Grid>
   );
 };

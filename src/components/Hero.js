@@ -67,7 +67,7 @@ export default function Hero() {
             useFlexGap
             sx={{ pt: 2, width: { xs: '100%', sm: 'auto' } }}
           >
-            <TextField
+            {/* <TextField
               id="outlined-basic"
               hiddenLabel
               size="small"
@@ -78,14 +78,17 @@ export default function Hero() {
                 autocomplete: 'off',
                 ariaLabel: 'Enter your email address',
               }}
-            />
+            /> */}
+            <Link href="/results-public">
             <Button variant="contained" color="primary">
-              Start now
+            
+              View Current Results
             </Button>
+            </Link>
           </Stack>
           <Typography variant="caption" textAlign="center" sx={{ opacity: 0.8 }}>
-            By clicking &quot;Start now&quot; you agree to our&nbsp;
-            <Link href="#" color="primary">
+            By clicking &quot;View Current Results&quot; you agree to our&nbsp;
+            <Link href="/results" color="primary">
               Terms & Conditions
             </Link>
             .
