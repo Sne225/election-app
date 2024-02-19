@@ -17,7 +17,7 @@ const routes = [
   { path: '/', element: <LandingPage /> },
   { path: 'signup', element: <SignUp /> },
   { path: 'signin', element: <SignIn /> },  
-  { path: 'results-public', element: <ResultsPublic /> },
+  { path: 'resultss', element: <ResultsPublic /> },
   { path: 'results', element: <PrivateRoute element={<Results />} />  },
   { path: 'home', element: <PrivateRoute element={<Home />} /> },
   { path: 'candidates', element: <PrivateRoute element={<Candidates />} /> },

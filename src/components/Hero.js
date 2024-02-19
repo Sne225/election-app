@@ -79,7 +79,7 @@ export default function Hero() {
                 ariaLabel: 'Enter your email address',
               }}
             /> */}
-            <Link href="/results-public" align='center'>
+            <Link href="/resultss" align='center'>
             <Button variant="contained" color="primary">
             
               View Current Results
