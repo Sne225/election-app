@@ -13,7 +13,6 @@ import {
   Container,
   Grid,
   Box,
-  createTheme,
 } from '@mui/material';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
@@ -21,22 +20,8 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Lottie from 'react-lottie';
 import animationData from '../animations/anim.json';
-import CustomCard from '../components/CustomCard';
 import SideNav from '../components/SideNav';
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#2196F3', // Update primary color to a shade of blue
-    },
-    secondary: {
-      main: '#FF5722', // Update secondary color to a shade of orange
-    },
-  },
-  typography: {
-    fontFamily: ['Helvetica', 'sans-serif'].join(','), // Use Roboto as the default font
-  },
-});
 
 const lottieOptions = {
   loop: true,

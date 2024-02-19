@@ -11,9 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import StarIcon from '@mui/icons-material/VolunteerActivismSharp';
 
 const ExpandMore = styled((props) => {
@@ -27,8 +25,8 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function CandidateCard({ candidate }) {
-  const { name, surname, manifesto, party } = candidate;
+export default function CandidateCard({ candidate, onVote }) {
+  const { name, surname, manifesto, party, image } = candidate;
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -53,9 +51,11 @@ export default function CandidateCard({ candidate }) {
         />
         <CardMedia
           component="img"
-          height="250"
-          image="/avatar1.jpg" // You can replace this with an actual image URL if needed
+          height="250px"
+          width="250px"
+          image={image} // Use the image URL from the database
           alt="Candidate image"
+          
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
@@ -63,8 +63,8 @@ export default function CandidateCard({ candidate }) {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites" sx={{alignItems: "center"}}>
-          <StarIcon/> <Typography  sx={{ marginLeft: '8px' }}>Vote</Typography>
+          <IconButton aria-label="add to favorites" sx={{ alignItems: "center" }} onClick={onVote}>
+            <StarIcon /> <Typography sx={{ marginLeft: '8px' }}>Vote</Typography>
           </IconButton>
           <ExpandMore
             expand={expanded}
@@ -77,7 +77,7 @@ export default function CandidateCard({ candidate }) {
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-          {manifesto}
+            {manifesto}
           </CardContent>
         </Collapse>
       </Card>

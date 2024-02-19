@@ -31,9 +31,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 const navItems = [
     { label: 'Home', icon: <FaHome color='white' />, path: '/home' },
     { label: 'Candidates', icon: <FaUsers color='white' />, path: '/candidates' },
-    { label: 'Vote', icon: <FaCodeBranch color='white' />, path: '#' },
     { label: 'Notifications', icon: <FaBell color='white' />, path: '#' },
-    { label: 'Results', icon: <FaChartBar color='white' />, path: '#' },
+    { label: 'Results', icon: <FaChartBar color='white' />, path: '/results' },
 ];
 
 const SideNav = () => {

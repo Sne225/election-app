@@ -79,6 +79,13 @@ export default function SignUp() {
     marginBottom: '-30px'
   };
 
+  const validateDisposableEmail = async (email) => {
+    const response = await fetch(`https://disposable.debounce.io/?email=${email}`);
+    const data = await response.json();
+    return data.disposable === "true";
+  };
+
+
   const handleSubmit = async () => {
     // event.preventDefault();
     setLoading(true);
@@ -88,9 +95,10 @@ export default function SignUp() {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return emailRegex.test(email);
     };
+    
 
     try {
-    const validateForm = () => {
+    const validateForm = async () => {
       const errors = {};
   
       // Perform validation checks here
@@ -114,6 +122,8 @@ export default function SignUp() {
         errors.email = 'Email is required. Please enter email.';
       } else if (!isValidEmail(email)) {
         errors.email = 'Invalid Email. Please try again.';
+      } else if (await validateDisposableEmail(email)) {
+        errors.email = 'Disposable email addresses are not allowed.';
       }
   
       if (!password.trim()) {
@@ -125,12 +135,10 @@ export default function SignUp() {
       return Object.keys(errors).length === 0;
     };
 
-    if (validateForm()) {
+    if (await validateForm()) {
 
       await createUserWithEmailAndPassword(auth, email, password)
-        .then(userCredentials => {
-          const user = userCredentials.user;
-
+        .then(userCredentials => { const user = userCredentials.user;
           console.log('Registered with:', user.email);
         })
 
@@ -150,7 +158,7 @@ export default function SignUp() {
 
       console.log('User added to Firestore with ID: ', userRef.id);
 
-      await new Promise(resolve => setTimeout(resolve, 4000), setSnackbarOpenn(true));
+      await new Promise(resolve => setTimeout(resolve, 3000), setSnackbarOpenn(true));
 
       navigate('/home');
 

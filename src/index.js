@@ -8,6 +8,7 @@ import './index.css';
 import Home from './pages/Home';
 import PrivateRoute from './Utils/PrivateRoute';
 import Candidates from './pages/Candidate';
+import Results from './pages/Results';
 // import { onAuthStateChanged } from 'firebase/auth';
 // import { auth } from './firebase';
 
@@ -15,6 +16,7 @@ const routes = [
   { path: '/', element: <LandingPage /> },
   { path: 'signup', element: <SignUp /> },
   { path: 'signin', element: <SignIn /> },
+  { path: 'results', element: <Results /> },
   { path: 'home', element: <PrivateRoute element={<Home />} /> },
   { path: 'candidates', element: <PrivateRoute element={<Candidates />} /> },
 
