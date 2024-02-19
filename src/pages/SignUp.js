@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -49,7 +48,7 @@ export default function SignUp() {
   const [name, setName] = React.useState('');
   const [surname, setSurname] = React.useState('');
   const [province, setProvince] = React.useState('');
-  const [idNumber, setIdNumber] = React.useState('');
+  const [idNumber, setIdNumber] = React.useState(0);
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [errorMessages, setErrorMessages] = React.useState({});
@@ -116,10 +115,10 @@ export default function SignUp() {
   
       if (!idNumber.trim()) {
         errors.idNumber = 'ID number is required';
-      } else if (idNumber.length !== 13) { // South African ID numbers are 13 digits long
+      } else if (idNumber.length < 13) { // South African ID numbers are 13 digits long
         errors.idNumber = 'Invalid ID number. Please try again.';
-      } else if (isValidIdNumber(idNumber)) {
-        setErrorMessages({ idNumber: 'Please enter numbers only' });
+      } else if (!isValidIdNumber(idNumber)) {
+        errors.idNumber = 'Please enter numbers only';
       }
   
       if (!province) {
