@@ -66,21 +66,9 @@ export default function Hero() {
             useFlexGap
             sx={{ pt: 2, width: { xs: '100%', sm: 'auto' } }}
           >
-            {/* <TextField
-              id="outlined-basic"
-              hiddenLabel
-              size="small"
-              variant="outlined"
-              aria-label="Enter your email address"
-              placeholder="Your email address"
-              inputProps={{
-                autocomplete: 'off',
-                ariaLabel: 'Enter your email address',
-              }}
-            /> */}
-            <Link href="/resultss" align='center'>
-            <Button variant="contained" color="primary">
-              View Current Results
+            <Link href="/result">
+            <Button variant="contained" color="primary"  align='center'
+            > View Current Results
             </Button>
             </Link>
           </Stack>
