@@ -23,7 +23,8 @@ For the project, these are the following tools used:
 
 # Features
 The application has the following features:
-- Creating User Account and Login 🔐
+- Validation 🔐
+- Creating User Account and Login 👥
 - Data Driven Updates 🔁
 - Vote for specific Members🤼
 - Create and View Votes 🗃
