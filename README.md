@@ -17,7 +17,7 @@ For the project, these are the following tools used:
 - Node.js
 - Gravatar API
 - Disposable API
-- MUI
+- MUI (Templates and Components)
 - Git (Version Control)
 - Chart.js
 
