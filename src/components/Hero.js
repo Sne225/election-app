@@ -4,7 +4,6 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
 export default function Hero() {
@@ -81,14 +80,13 @@ export default function Hero() {
             /> */}
             <Link href="/resultss" align='center'>
             <Button variant="contained" color="primary">
-            
               View Current Results
             </Button>
             </Link>
           </Stack>
           <Typography variant="caption" textAlign="center" sx={{ opacity: 0.8 }}>
             By clicking &quot;View Current Results&quot; you agree to our&nbsp;
-            <Link href="/results" color="primary">
+            <Link href="#" color="primary">
               Terms & Conditions
             </Link>
             .

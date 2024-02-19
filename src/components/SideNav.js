@@ -14,7 +14,7 @@ import {
     Typography, Dialog, DialogTitle, DialogContent, DialogActions, Button, Snackbar, Alert,
     Box, Avatar, Tooltip, Link, Menu, MenuItem
 } from '@mui/material';
-import { FaHome, FaUsers, FaBell, FaChartBar, FaCog, FaBars, FaTimes, FaUserEdit, FaSignOutAlt, FaCodeBranch } from 'react-icons/fa';
+import { FaHome, FaUsers, FaBell, FaChartBar, FaBars, FaTimes, FaSignOutAlt } from 'react-icons/fa';
 import Profile from './Profile';
 import './Nav.css';
 import { useNavigate } from 'react-router-dom';
